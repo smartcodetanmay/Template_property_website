@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "city": "noida",
+    "title": "Noida Luxury Heights",
+    "price": "₹75 Lac",
+    "image": "https://picsum.photos/600/400?random=11"
+  },
+  {
+    "id": 2,
+    "city": "noida",
+    "title": "Elite Noida Residency",
+    "price": "₹92 Lac",
+    "image": "https://picsum.photos/600/400?random=12"
+  },
+  {
+    "id": 3,
+    "city": "faridabad",
+    "title": "Faridabad Smart Living",
+    "price": "₹65 Lac",
+    "image": "https://picsum.photos/600/400?random=13"
+  },
+  {
+    "id": 4,
+    "city": "delhi",
+    "title": "Delhi Urban Homes",
+    "price": "₹1.2 Cr",
+    "image": "https://picsum.photos/600/400?random=14"
+  }
+]
