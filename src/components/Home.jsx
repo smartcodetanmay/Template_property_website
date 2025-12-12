@@ -30,7 +30,8 @@ const Home = () => {
 
     const results = collections.filter((item) => {
       const cityMatch = city.toLowerCase() === "all" || item.city.toLowerCase() === city.toLowerCase();
-      const searchMatch = item.title.toLowerCase().includes(value) || item.city.toLowerCase().includes(value);
+      const searchMatch =
+        item.title.toLowerCase().includes(value) || item.city.toLowerCase().includes(value);
       return cityMatch && searchMatch;
     });
 
@@ -42,12 +43,42 @@ const Home = () => {
     }
   };
 
-  const trendingProjectsFiltered = collections
-    .filter((item) => item.trending)
-    .filter((item) => city.toLowerCase() === "all" || item.city.toLowerCase() === city.toLowerCase());
+  
+  const trendingProjectsStatic = [
+    {
+      id: "t1",
+      title: "Noida Heights",
+      city: "Noida",
+      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80",
+      properties: "3 BHK, 4 BHK",
+      price: "₹ 1.5cr - 3cr",
+      trending: true,
+    },
+    {
+      id: "t2",
+      title: "Delhi Residency",
+      city: "Delhi",
+      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80",
+      properties: "2 BHK, 3 BHK",
+      price: "₹ 1cr - 2cr",
+      trending: true,
+    },
+  ];
+
+  const trendingProjectsFiltered = [
+    ...collections
+      .filter((item) => item.trending)
+      .filter(
+        (item) => city.toLowerCase() === "all" || item.city.toLowerCase() === city.toLowerCase()
+      ),
+    ...trendingProjectsStatic.filter(
+      (item) => city.toLowerCase() === "all" || item.city.toLowerCase() === city.toLowerCase()
+    ),
+  ];
 
   return (
     <div className="bg-gray-50">
+     
       <nav className="fixed top-0 left-0 w-full bg-white shadow z-50 flex items-center justify-between px-6 py-4">
         <div className="flex items-center gap-6">
           <div className="w-10 h-10 bg-pink-600 text-white flex items-center justify-center text-lg font-bold rounded">IX</div>
@@ -69,6 +100,7 @@ const Home = () => {
         </div>
       </nav>
 
+       
       <header className="mt-20 bg-[url('https://images.unsplash.com/photo-1499914485622-a88fac536970?q=80')] bg-cover bg-center">
         <div className="bg-black/50 w-full h-full p-8 sm:p-20">
           <h1 className="text-white text-3xl sm:text-5xl font-bold leading-tight">
@@ -84,12 +116,18 @@ const Home = () => {
               <option>Residential</option>
               <option>Commercial</option>
             </select>
-            <input type="text" placeholder="Search locality, landmark, project or builder" className="px-4 py-3 flex-1 border-t sm:border-l sm:border-t-0" onChange={(e) => setQuery(e.target.value)} />
+            <input
+              type="text"
+              placeholder="Search locality, landmark, project or builder"
+              className="px-4 py-3 flex-1 border-t sm:border-l sm:border-t-0"
+              onChange={(e) => setQuery(e.target.value)}
+            />
             <button onClick={handleSearch} className="px-6 py-3 bg-pink-600 text-white font-semibold">Search</button>
           </div>
         </div>
       </header>
 
+       
       <section className="max-w-6xl mx-auto px-6 py-16">
         <div className="text-center">
           <p className="text-sm uppercase text-gray-500">We have handcrafted our</p>
@@ -109,11 +147,14 @@ const Home = () => {
         </div>
       </section>
 
+       
       {trendingProjectsFiltered.length > 0 && (
         <section className="max-w-6xl mx-auto px-6 py-16 bg-gray-100">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold">Trending Projects</h2>
-            <p className="text-gray-500 text-sm mt-2">Explore top trending projects{city.toLowerCase() !== "all" ? ` in ${city}` : ""}</p>
+            <p className="text-gray-500 text-sm mt-2">
+              Explore top trending projects{city.toLowerCase() !== "all" ? ` in ${city}` : ""}
+            </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {trendingProjectsFiltered.map((item) => (
@@ -129,39 +170,39 @@ const Home = () => {
         </section>
       )}
 
+       
       <footer className="bg-black text-white py-8 text-center">
-        <footer className="mt-16">
-          <div className="bg-blue-50 py-12">
-            <div className="max-w-6xl mx-auto px-6">
-              <h2 className="text-3xl font-bold mb-6 text-black">Most Popular Links</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                {Array.from({ length: 110 }).map((_, i) => (
-                  <a key={i} href="#" className="text-blue-600 hover:text-blue-800 hover:underline">Noida Plot {i + 1}</a>
-                ))}
-              </div>
+        <div className="bg-blue-50 py-12">
+          <div className="max-w-6xl mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-6 text-black">Most Popular Links</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {Array.from({ length: 110 }).map((_, i) => (
+                <a key={i} href="#" className="text-blue-600 hover:text-blue-800 hover:underline">Noida Plot {i + 1}</a>
+              ))}
             </div>
           </div>
-          <div className="bg-[#111] text-white py-14">
-            <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row sm:justify-between sm:items-start">
-              <div>
-                <h2 className="text-2xl font-bold">InvestoXpert</h2>
-                <p className="text-gray-400 mt-2">Your trusted real-estate partner.</p>
-              </div>
-              <div className="mt-10 sm:mt-0">
-                <h3 className="text-xl font-bold mb-4">Contact Us</h3>
-                <p className="text-gray-300 mb-2">Email: investoxpert@gmail.com</p>
-                <p className="text-gray-300 mb-2">Phone: +91 9876543210</p>
-                <p className="text-gray-300">Address: Tower B, Sector 62, Noida, UP</p>
-              </div>
+        </div>
+        <div className="bg-[#111] text-white py-14">
+          <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row sm:justify-between sm:items-start">
+            <div>
+              <h2 className="text-2xl font-bold">InvestoXpert</h2>
+              <p className="text-gray-400 mt-2">Your trusted real-estate partner.</p>
             </div>
-            <div className="text-center text-gray-500 mt-12 pt-6 border-t border-gray-700">© 2025 InvestoXpert — All Rights Reserved</div>
+            <div className="mt-10 sm:mt-0">
+              <h3 className="text-xl font-bold mb-4">Contact Us</h3>
+              <p className="text-gray-300 mb-2">Email: investoxpert@gmail.com</p>
+              <p className="text-gray-300 mb-2">Phone: +91 9876543210</p>
+              <p className="text-gray-300">Address: Tower B, Sector 62, Noida, UP</p>
+            </div>
           </div>
-        </footer>
+          <div className="text-center text-gray-500 mt-12 pt-6 border-t border-gray-700">© 2025 InvestoXpert — All Rights Reserved</div>
+        </div>
       </footer>
 
+       
       {selectedProject && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white w-96 rounded-lg shadow-lg p-6 relative">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
+          <div className="bg-white w-full max-w-md rounded-lg shadow-lg p-6 relative">
             <button className="absolute top-2 right-3 text-xl font-bold" onClick={() => setSelectedProject(null)}>×</button>
             <h2 className="text-xl font-bold mb-2">{selectedProject.title}</h2>
             <p className="text-gray-600 mb-2">{selectedProject.city}</p>
@@ -174,6 +215,7 @@ const Home = () => {
           </div>
         </div>
       )}
+
     </div>
   );
 };
