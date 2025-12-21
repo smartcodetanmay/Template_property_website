@@ -1,15 +1,27 @@
-import App from '../App'
-import Home from '../components/Home'
-import ProjectDetails from '../components/ProjectDetails'
-import {CreateBrowserRouter, RouterProvider} from "react-router-dom"
+import App from "../App"
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "../pages/Home";
+import ProjectDetails from "../components/ProjectDetails";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,  
+    children: [
+      {
+        path: "/",   
+        element: <Home />,
+      },
+      {
+        path:"/project-details/:id",
+        element:<ProjectDetails/>
+      }
+    ],
+  },
+]);
 
 const Routes = () => {
-   
-    return (
-        <div>
-     
-        </div>
-    )
-}
+  return <RouterProvider router={router} />;
+};
 
-export default Routes
+export default Routes;

@@ -1,13 +1,10 @@
-import React from 'react'
-import Home from './components/Home'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import ProjectDetails from './components/ProjectDetails'
+import {  Outlet } from 'react-router-dom'
 
 const App = () => {
    
   return (
     <div>
-   <RouterProvider router={AllRouters}/>
+   <Outlet/>
     </div>
   )
 }
